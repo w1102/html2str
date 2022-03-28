@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HTML TO STR</title>
+	
+	<style>
+	
+		form {
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+		}
+		
+		#copy-btn:hover {
+			background-color: #44d1df;
+		}
+		
+	</style>
+	
+</head>
+<body>
+	
+	<form>
+		
+		<h1>Nhập HTML code</h1>
+		
+		<textarea name="text-html" cols="40" rows="5" id="html-ipt"></textarea>
+		
+		<h1>Kết quả</h1>
+		
+		<textarea name="text-str" cols="40" rows="5" id="str-ipt" readonly></textarea>
+		
+		<input type="button" value="Copy to Clipboard" id="copy-btn">
+	</form>
+	
+	<script>
+		window.addEventListener("input", e => {
+			if (e.target.id == "html-ipt") {
+				let str = document.querySelector('#html-ipt').value
+				str = str.replace(/"/g, '/"')
+				str = str.replace(/\s/g, ' ')
+				
+				
+				document.querySelector('#str-ipt').value = `"${str}"`
+			}
+		})
+		
+		window.addEventListener("click", e => {
+			
+			if (e.target.id == 'copy-btn') {
+				/* Get the text field */
+				let copyText = document.querySelector('#str-ipt').value;
+				console.log(copyText)
+
+				/* Copy the text inside the text field */
+				navigator.clipboard.writeText(copyText);
+			}
+			
+		})
+	</script>
+	
+	
+</body>
+</html>
