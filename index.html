@@ -41,14 +41,17 @@
 			if (e.target.id == "html-ipt") {
 				let str = document.querySelector('#html-ipt').value
 				
-				// replace " => \"
-				str = str.replace(/"/g, '\"')
+				// remove comment
+				str = str.replace(/(\/\/..*)|(\/\*..+\*\/)/g, '')
 				
 				// remove line break and tab
 				str = str.replace(/(\n)|(\t)/g, '')
 				
 				// remove >= 2 space 
 				str = str.replace(/\s{2,}/g, '')
+				
+				// replace " => \"
+				str = str.replaceAll(`"`, `\\"`)
 				
 				document.querySelector('#str-ipt').value = `"${str}"`
 			}
